@@ -1,0 +1,30 @@
+.heading {
+    color: red;
+}
+.sub-heading{
+    color: blue;
+}
+@media (max-width : 800px){
+    .heading{
+        color: aqua;
+    }
+    .sub-heading{
+        color: blueviolet;
+    }
+}
+@media print {
+    .heading{
+        color: black;
+    }
+    .sub-heading{
+        color: black;
+    }
+}
+@media (max-width :1111px) and (min-width :888px){
+    .heading{
+        background-color: aqua;
+    }
+    .sub-heading{
+        background-color: brown;
+    }
+}
