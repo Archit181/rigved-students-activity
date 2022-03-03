@@ -8,7 +8,17 @@
 </head>
 <body>
     <script type="text/javascript">
-        
+        record = [10,-3,50,-2,40,70,90];
+        console.log(record);
+
+        max = -Infinity;
+        last = record.length -1 ;
+        for(i = 0; i <= last ; i++){
+            if(record[i] > max){
+                max = record[i];
+            }
+        }
+        document.write("largesst number"+max);
     </script>
 </body>
 </html>
