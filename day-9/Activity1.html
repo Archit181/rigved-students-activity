@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Mathematical Form</h2>
+    <from name="f1" action="ex4strings.html" method="post" onsubmit="return validateRegistration">
+    <label>
+        Input-box1<input type="number" name="in1" id="i1" autocomplete="off">
+    </label>
+    <br/>
+    <br />
+    <label>
+        Input-box2<input type="number" name="in2" id="i2" >
+    </label>
+    <br/>
+    <br />
+    <label>
+        Result>>><input type="number" name="r" id="res" >
+    </label>
+    <br/>
+    <br />
+    <button onclick="add()">Addition</button>
+    <button onclick="sub()">Substraction</button>
+    <button onclick="mul()">Multiplicaton</button>
+    <button onclick="div()">Division</button>
+    </from>
+    <script type="text/javascript">
+      /*  function add(a1) {
+            a1 = (i1+i2);
+            if(onclick=add()) {
+                r = a1;
+                document.write('<p> Addition is :'+r+'</p>');
+            }
+        }
+        function cal() {
+            var add = document.getElementById('id1').value + document.getElementById('id2').value;
+            var suc = document.getElementById('id1').value - document.getElementById('id2').value;
+            var mul = document.getElementById('id1').value * document.getElementById('id2').value;
+            var div = document.getElementById('id1').value % document.getElementById('id2').value;
+
+            if(document.getElementById="a") {
+                var r = add;
+            }document.write('<p> Addition :'+r+'</p>');
+        }*/ 
+
+
+        function add() {
+            var x = parseInt(document.getElementById("i1").value);
+            var y = parseInt(document.getElementById("i2").value);
+            var z = x + y;
+            document.getElementById("res").value = z;
+        }
+        function sub() {
+            var x = parseInt(document.getElementById("i1").value);
+            var y = parseInt(document.getElementById("i2").value);
+            var z = x - y;
+            document.getElementById("res").value = z;
+        }
+        function mul() {
+            var x = parseInt(document.getElementById("i1").value);
+            var y = parseInt(document.getElementById("i2").value);
+            var z = x * y;
+            document.getElementById("res").value = z;
+        }
+        function div() {
+            var x = parseInt(document.getElementById("i1").value);
+            var y = parseInt(document.getElementById("i2").value);
+            var z = x / y;
+            document.getElementById("res").value = z;
+        }
+
+
+
+        
+       </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>creating Objects With Constructor</h1>
+    <script type="text/javascript">
+        function Person(n,a) {
+            this.name = n;
+            this.age = a;
+        }
+        var p1 = new Person('Raj' , 35);
+        var p2 = new Person('Vijay' , 38);
+        document.write('<p> person1'+p1.name+ ',age'+p1.age+'</p>');
+        document.write('<p> person2'+p2.name+ ',age'+p2.age+'</p>');
+    </script>
+</body>
+</html>
