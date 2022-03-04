@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>logical operators & elseif</h2>
+    <script type="text/javascript">
+        var phsics = 75;
+        var chemistry = 40;
+        var maths = 78;
+        if(phsics >35 && chemistry >35 && maths >35){
+            document.write('<p>Exam cleared</p>');
+        } else{
+            document.write('<p>failed in exam</p>');
+        }
+        var result =(phsics + chemistry + maths)/3;
+        document.write("Average is ="+result);
+        if(result >=70){
+            document.write("<p>first class pass with distinction<p/>");
+        } else if(result < 70 && result >= 60) {
+            document.write("<p>first class pass<p/>");
+        }else if(result < 60 && result >= 50) {
+            document.write("<p> second class<p/>");
+        } else if(result < 50 && result >= 35) {
+            document.write("<p>pass<p/>");
+        } else{
+            document.write("<p>fail<p/>");
+        }
+
+    </script>
+</body>
+</html>
