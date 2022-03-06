@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array & Nested Objects</title>
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        table {
+            
+            text-align: center;
+            border: solid blueviolet 3px;
+            border-radius: 5px;
+            width: 80%;
+            margin: auto;
+        }
+
+        th,
+        td {
+            text-align: center;
+            padding: 8px;
+            border: 2px solid blue;
+        }
+    </style>
+
+    
+</head>
+
+<body>
+
+    <h1 style="text-align: center;">day-10 Activity Table [Array & Nested Objects]</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Player Id</th>
+                <th>Full Name</th>
+                <th>State</th>
+                <th>City</th>
+               
+            </tr>
+        </thead>
+        <tbody id="tbData"></tbody>
+    </table>
+
+    
+
+    <script>
+        var record = [
+            {
+                playerId:1,
+                firstName: "Mahendra Singh",
+                lastName: "Dhoni",
+                address: { state: "Jharkhand", city: "Ranchi" },
+              
+            },
+            {
+                playerId: 2,
+                firstName: "Virat",
+                lastName: "Kohli",
+                address: { state: "Delhi", city: "New Delhi" },
+               
+            },
+            {
+                playerId : 3,
+                firstName: "Sachin",
+                lastName: "Tendulkar",
+                address: { state: "Maharashtra", city: "Mumbai"},
+            },
+
+            {
+                playerId: 4,
+                firstName: "Rohit",
+                lastName: "Sharma",
+                address: { state: "Maharashtra", city: "Mumbai" },
+              
+            }
+
+        ];
+
+        var table = "<tbody>";
+        for (i = 0; i < record.length; i++) {
+            table += "<tr>";
+            table += "<td>" + record[i].playerId + "</td>";
+            table += "<td>" + record[i].firstName + " " + record[i].lastName + "</td>";
+            table += "<td>" + record[i].address.state + "</td>";
+            table += "<td>" + record[i].address.city + "</td>";
+           
+            table += "</tr>";
+        }
+        table += "</tbody>";
+        document.getElementById("tbData").innerHTML = table;
+    </script>
+</body>
+
+</html>
