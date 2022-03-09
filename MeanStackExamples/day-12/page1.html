@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Page 1 - Storing Data</h2>
+        <label>Name:</label><br>
+        <input type="text" id="un" name="userName" autocomplete="off"><br>
+        <label>Age:</label><br>
+        <input type="number" id="a1" name="age" autocomplete="off"><br><br>
+        <input type="button" value="store" onclick="storeData()">
+        <br><br>
+        <a href="page2.html">Here saved Data</a>
+    </div>
+
+    <script>
+        function storeData() {
+            var name = document.getElementById('un').value;
+            var age = document.getElementById('a1').value;
+            if (name.length < 1 && age.length < 1) {
+                alert("Please Enter Some Input!");
+            } else {
+                sessionStorage.setItem('Name', name);
+                sessionStorage.setItem('Age', age);
+            }
+        }
+    </script>
+</body>
+</html>
