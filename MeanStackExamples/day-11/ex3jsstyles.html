@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="i1">This is a Heading</h2>
+    <button onclick="changeColor()">Add Color</button>
+    <script type="text/javascript">
+    var counter = 0;
+    function changeColor() {
+
+    var ele = document.getElementById('i1');
+    var colors = ['red', 'green', 'blue', 'violate'];
+    ele.style.color = colors[counter++];
+    if(counter == color.length){
+        counter = 0;
+    }
+    }
+    </script>
+</body>
+</html>
