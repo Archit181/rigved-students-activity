@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> understanding var , let & const </h2>
+    <script type="text/javascript">
+        for(i = 0; i <= 5; i++){
+            const y = 35;
+            let x = 15;
+            x = i * 15;
+           // y = i *15; // error bcos it is a constant variable 
+            document.write("<p> x :"+x+" y :"+y+"</p>");
+        }
+        document.write("<p> accessing x outside of for loop"+x+"</p>"); //error bcoz let cant be accessed ouside the function
+    </script>
+</body>
+</html>
