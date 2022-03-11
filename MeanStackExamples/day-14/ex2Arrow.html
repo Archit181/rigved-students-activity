@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Arrow functions as a replcement to Annonymous</h2>
+    <script type="text/javascript">
+        var items = [8, 5, 4, 3, 6];
+        // Annonymous function
+        items.forEach(function (items , i){
+            document.write(`<p> itesm : ${items} at positions : ${i} </p>`);
+        });
+        document.write("<hr />");
+        //Arrow function
+        items.forEach((items , i) => document.write(`<p> items : ${items} at positions : ${i} </p>`));
+        // Arrow function in map
+        var items2 = items.map((item , i) => item * 10);
+        document.write("<hr />");
+        items2.forEach((items ,i) => document.write(`<p> items with map : ${items} at positions : ${i}`));
+            
+    </script>
+</body>
+</html>

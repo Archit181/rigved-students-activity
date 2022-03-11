@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Static Members</h2>
+    <script type="text/javascript">
+        class Employee {
+            static company = 'Rigved';
+            constructor (id, name, salary) {
+                this.id = id;
+                this.name = name;
+                this.salary = salary;
+            }
+            static hello() {
+                document.write(`<p> this is a Static function ${this.company}</p>`);
+            }
+            display () {
+                document.write(`<p> id : ${this.id}, name : ${this.name}, salary : ${this.salary}, company : ${Employee.company}`);
+            }
+        }
+        Employee.hello();
+        var e = new Employee(100, "Raj", 35200);
+        var e1 = new Employee(200, "Vijay", 35000);
+        e.display();
+        e1.display();
+        document.write("<hr /");
+        e.name = "Alexander";
+        Employee.company = "Rigved Technologies";
+        e.display();
+        e1.display();
+
+    </script>
+</body>
+</html>

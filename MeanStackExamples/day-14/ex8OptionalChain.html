@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Optional Chain demo </h1>
+    <script type="text/javascript">
+        let users = [
+            {name : "Alex", age : 35, address : {state : "KA", city : "BLR"}},
+            {name : "Bruce", age :45},
+            {name : "Charles", age : 25, address : {state :"TN", city : "CHN"}}
+
+        ];
+        for(i = 0; i < users.length; i++) {
+            document.write(`<p> Name : ${users[i]?.name}, Age : ${users[i]?.age}, 
+                State : ${users[i]?.address?.state}, City : ${users[i]?.address?.city} </p>`);
+        } // when you use ? sign after the properties you can print the value without an error bcos of Optional Chain..!
+    </script>
+</body>
+</html>

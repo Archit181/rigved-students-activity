@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <header>Activity - 1 Create Template Strings & Optional Chain Table</header>
+    <style type ="text/css">
+        
+        table { border : 8px solid black ; width: 800px ; margin: auto;}
+        th {border: 4px solid blueviolet; padding: 10px;}
+        td {border : 4px solid red; padding: 8px;}
+        header {text-align: center;}
+        
+        </style>
+</head>
+<body>
+    
+    <table class="Emp table">
+        <tr class="bg-info">  
+            <th>- Name -</th>
+            <th>- Age -</th>
+            <th>- state -</th>
+            <th>- City -</th>
+        </tr>
+      
+        <tbody id="mytable">
+
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        let users = [
+            {name : "Alex", age : 35, address :{state : "KA", city : "BLR"}},
+            {name : "Bruce", age :45},
+            {name : "Charles", age : 25, address :{state : "MH", city :"MBI"}},
+            {name : "David", age : 49},
+            {name : "Edward", age : 33, address :{state : "TN", city :"CHN"}}
+        ];
+     /*   for(var i = 0; i < users.length; i++) {
+            document.write(`<p> Name : ${users[i]?.name}, Age : ${users[i]?.age},
+             State : ${users[i]?.address?.state}, City : ${users[i]?.address?.city}</p>`);
+        }   */
+
+
+        buildTable(users)
+
+        function buildTable(data) {
+            var table = document.getElementById('mytable')
+
+            for(i = 0; i < users.length; i ++) {
+               var row = `<tr>
+                                <td>${data[i]?.name}</td>
+                                <td>${data[i]?.age}</td>
+                                <td>${data[i]?.address?.state}</td>
+                                <td>${data[i]?.address?.city}</td> 
+                         </tr>`
+                table.innerHTML +=row
+            }
+        }
+       
+        
+    </script>
+</body>
+</html>
