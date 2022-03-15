@@ -1,0 +1,238 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rigved_db          |
+| sys                |
++--------------------+
+5 rows in set (0.27 sec)
+
+mysql> use rigved_db;
+Database changed
+mysql> show tables;
+Empty set (0.17 sec)
+
+mysql> create table empolyee(emp_id not null primary key, name varchar(31) not null, age int, check(age>18 and age<60), email varchar(31) unique);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null primary key, name varchar(31) not null, age int, check(age>18 and age<6' at line 1
+mysql> create table empolyee(emp_id primary key not null, name varchar(31) not null, age int, check(age>18 and age<60), email varchar(31) unique);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key not null, name varchar(31) not null, age int, check(age>18 and age<6' at line 1
+mysql> create table empolyee(emp_id primary key, name varchar(31) not null, age int, check(age>18 and age<60), email varchar(31) unique);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key, name varchar(31) not null, age int, check(age>18 and age<60), email' at line 1
+mysql> create table empolyee(emp_id int primary key, name varchar(31) not null, age int, check(age>18 and age<60), email varchar(31) unique);
+Query OK, 0 rows affected (3.09 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| empolyee            |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> desc employee;
+ERROR 1146 (42S02): Table 'rigved_db.employee' doesn't exist
+mysql> desc employee;
+ERROR 1146 (42S02): Table 'rigved_db.employee' doesn't exist
+mysql> show tables;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| empolyee            |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> desc employee;
+ERROR 1146 (42S02): Table 'rigved_db.employee' doesn't exist
+mysql> DESC employee;
+ERROR 1146 (42S02): Table 'rigved_db.employee' doesn't exist
+mysql> DESC empoloyee;
+ERROR 1146 (42S02): Table 'rigved_db.empoloyee' doesn't exist
+mysql> DESC empoloyee;
+ERROR 1146 (42S02): Table 'rigved_db.empoloyee' doesn't exist
+mysql> show tables;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| empolyee            |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> DESC empolyee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| emp_id | int         | NO   | PRI | NULL    |       |
+| name   | varchar(31) | NO   |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| email  | varchar(31) | YES  | UNI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into empolyee values(111, 'Alex', 38, 'Alex@gmail.com');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into empolyee values(3333, 'Bruce', 35, 'Bruce@gmail.com');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into empolyee values(4444, 'Thomas', 37, 'tommyshelby@gmail.com');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into empolyee values(5555, 'Polly', 41, '40yearsold&stillbreaking@gmail.com');
+ERROR 1406 (22001): Data too long for column 'email' at row 1
+mysql> insert into empolyee values(5555, 'Polly', 41, '40yearsold&still@gmail.com');
+Query OK, 1 row affected (0.30 sec)
+
+mysql> insert into empolyee values(7777, 'John', 28, 'eh-brother@gmail.com');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into empolyee values(7777, 'John', 28, 'eh-brother@gmail.com');
+ERROR 1062 (23000): Duplicate entry '7777' for key 'empolyee.PRIMARY'
+mysql> insert into empolyee values(7777, 'John', 28, 'tommy@gmail.com');
+ERROR 1062 (23000): Duplicate entry '7777' for key 'empolyee.PRIMARY'
+mysql> insert into empolyee values(4444, 'John', 28, 'tommy@gmail.com');
+ERROR 1062 (23000): Duplicate entry '4444' for key 'empolyee.PRIMARY'
+mysql> insert into empolyee values(2222, 'Grace', 31, 'tommysheart@gmail.com');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> desc empolyee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| emp_id | int         | NO   | PRI | NULL    |       |
+| name   | varchar(31) | NO   |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| email  | varchar(31) | YES  | UNI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.12 sec)
+
+mysql> alter table empolyee add column pan varchar(10), add column aadhar bigint;
+Query OK, 0 rows affected (3.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc empolyee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| emp_id | int         | NO   | PRI | NULL    |       |
+| name   | varchar(31) | NO   |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| email  | varchar(31) | YES  | UNI | NULL    |       |
+| pan    | varchar(10) | YES  |     | NULL    |       |
+| aadhar | bigint      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.08 sec)
+
+mysql> alter empolyee add constraint uq_pan uniquw key(pan), add constraint uq_aadhar unique key(aadhar);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'empolyee add constraint uq_pan uniquw key(pan), add constraint uq_aadhar unique ' at line 1
+mysql> alter empolyee add constraint uq_pan unique key (pan), add constraint uq_aadhar unique key (aadhar);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'empolyee add constraint uq_pan unique key (pan), add constraint uq_aadhar unique' at line 1
+mysql> alter table  empolyee add constraint uq_pan unique key (pan), add constraint uq_aadhar unique key (aadhar);
+Query OK, 0 rows affected (1.46 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from empolyee;
++--------+--------+------+----------------------------+------+--------+
+| emp_id | name   | age  | email                      | pan  | aadhar |
++--------+--------+------+----------------------------+------+--------+
+|    111 | Alex   |   38 | Alex@gmail.com             | NULL |   NULL |
+|   2222 | Grace  |   31 | tommysheart@gmail.com      | NULL |   NULL |
+|   3333 | Bruce  |   35 | Bruce@gmail.com            | NULL |   NULL |
+|   4444 | Thomas |   37 | tommyshelby@gmail.com      | NULL |   NULL |
+|   5555 | Polly  |   41 | 40yearsold&still@gmail.com | NULL |   NULL |
+|   7777 | John   |   28 | eh-brother@gmail.com       | NULL |   NULL |
++--------+--------+------+----------------------------+------+--------+
+6 rows in set (0.01 sec)
+
+mysql> desc empolyee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| emp_id | int         | NO   | PRI | NULL    |       |
+| name   | varchar(31) | NO   |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| email  | varchar(31) | YES  | UNI | NULL    |       |
+| pan    | varchar(10) | YES  | UNI | NULL    |       |
+| aadhar | bigint      | YES  | UNI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.13 sec)
+
+mysql> select * from empolyee;
++--------+--------+------+----------------------------+------+--------+
+| emp_id | name   | age  | email                      | pan  | aadhar |
++--------+--------+------+----------------------------+------+--------+
+|    111 | Alex   |   38 | Alex@gmail.com             | NULL |   NULL |
+|   2222 | Grace  |   31 | tommysheart@gmail.com      | NULL |   NULL |
+|   3333 | Bruce  |   35 | Bruce@gmail.com            | NULL |   NULL |
+|   4444 | Thomas |   37 | tommyshelby@gmail.com      | NULL |   NULL |
+|   5555 | Polly  |   41 | 40yearsold&still@gmail.com | NULL |   NULL |
+|   7777 | John   |   28 | eh-brother@gmail.com       | NULL |   NULL |
++--------+--------+------+----------------------------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> insert into emolyee values(0101, 'gabbar', 30,'gabbar@gmail.com','isback123',123456789);
+ERROR 1146 (42S02): Table 'rigved_db.emolyee' doesn't exist
+mysql> insert into empolyee values(0101, 'gabbar', 30,'gabbar@gmail.com','isback123',123456789);
+Query OK, 1 row affected (0.27 sec)
+
+mysql> insert into empolyee values(7861, 'hugh', 43,'washere@gmail.com','washere1213',548864644);
+ERROR 1406 (22001): Data too long for column 'pan' at row 1
+mysql> insert into empolyee values(7861, 'hugh', 43,'washere@gmail.com','washere1',548864644);
+Query OK, 1 row affected (0.39 sec)
+
+mysql> select * from empolyee;
++--------+--------+------+----------------------------+-----------+-----------+
+| emp_id | name   | age  | email                      | pan       | aadhar    |
++--------+--------+------+----------------------------+-----------+-----------+
+|    101 | gabbar |   30 | gabbar@gmail.com           | isback123 | 123456789 |
+|    111 | Alex   |   38 | Alex@gmail.com             | NULL      |      NULL |
+|   2222 | Grace  |   31 | tommysheart@gmail.com      | NULL      |      NULL |
+|   3333 | Bruce  |   35 | Bruce@gmail.com            | NULL      |      NULL |
+|   4444 | Thomas |   37 | tommyshelby@gmail.com      | NULL      |      NULL |
+|   5555 | Polly  |   41 | 40yearsold&still@gmail.com | NULL      |      NULL |
+|   7777 | John   |   28 | eh-brother@gmail.com       | NULL      |      NULL |
+|   7861 | hugh   |   43 | washere@gmail.com          | washere1  | 548864644 |
++--------+--------+------+----------------------------+-----------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> alter table empolyee drop column pan, drop column aadhar;
+Query OK, 0 rows affected (3.80 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from empolyee;
++--------+--------+------+----------------------------+
+| emp_id | name   | age  | email                      |
++--------+--------+------+----------------------------+
+|    101 | gabbar |   30 | gabbar@gmail.com           |
+|    111 | Alex   |   38 | Alex@gmail.com             |
+|   2222 | Grace  |   31 | tommysheart@gmail.com      |
+|   3333 | Bruce  |   35 | Bruce@gmail.com            |
+|   4444 | Thomas |   37 | tommyshelby@gmail.com      |
+|   5555 | Polly  |   41 | 40yearsold&still@gmail.com |
+|   7777 | John   |   28 | eh-brother@gmail.com       |
+|   7861 | hugh   |   43 | washere@gmail.com          |
++--------+--------+------+----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> ^C
+mysql>
