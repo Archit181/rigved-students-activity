@@ -1,0 +1,120 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use rigved_db;
+Database changed
+mysql> delimiter $$
+mysql> ;
+    -> $$
+ERROR 1065 (42000): Query was empty
+mysql> create table user(userId int primary key auto_increment, name varchar(18), password varchar(18))$$
+Query OK, 0 rows affected (2.13 sec)
+
+mysql> desc user$$
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| userId   | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(18) | YES  |     | NULL    |                |
+| password | varchar(18) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.07 sec)
+
+mysql> create table history(userId int, name varchar(10), old_password varchar(18),time, time)$$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', time)' at line 1
+mysql> create table history(userId int, name varchar(10), old_password varchar(18),time time)$$
+Query OK, 0 rows affected (0.74 sec)
+
+mysql> desc history$$
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| userId       | int         | YES  |     | NULL    |       |
+| name         | varchar(10) | YES  |     | NULL    |       |
+| old_password | varchar(18) | YES  |     | NULL    |       |
+| time         | time        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.23 sec)
+
+mysql> insert into user(name, password) values('Alex','aggawgie'),('Bruce','WAyne1'),('Joker','HAhaHAhaHAha')$$
+Query OK, 3 rows affected (0.24 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from user$$
++--------+-------+--------------+
+| userId | name  | password     |
++--------+-------+--------------+
+|      1 | Alex  | aggawgie     |
+|      2 | Bruce | WAyne1       |
+|      3 | Joker | HAhaHAhaHAha |
++--------+-------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> create trigger update_history
+    -> before update on user for each row
+    -> begin
+    -> insert into history(name,old_password,time) values(old.name, old.password, current_time());
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.61 sec)
+
+mysql> update user set password = 'onemanarmy' where userId = 1$$
+Query OK, 1 row affected (0.35 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> create procedure his()
+    -> select * from history $$
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> call his()$$
++--------+------+--------------+----------+
+| userId | name | old_password | time     |
++--------+------+--------------+----------+
+|   NULL | Alex | aggawgie     | 19:03:59 |
++--------+------+--------------+----------+
+1 row in set (0.04 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from history$$
++--------+------+--------------+----------+
+| userId | name | old_password | time     |
++--------+------+--------------+----------+
+|   NULL | Alex | aggawgie     | 19:03:59 |
++--------+------+--------------+----------+
+1 row in set (0.00 sec)
+
+mysql> create procedure his()
+    -> select * from history$$
+ERROR 1304 (42000): PROCEDURE his already exists
+mysql> call his()$$
++--------+------+--------------+----------+
+| userId | name | old_password | time     |
++--------+------+--------------+----------+
+|   NULL | Alex | aggawgie     | 19:03:59 |
++--------+------+--------------+----------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from user$$
++--------+-------+--------------+
+| userId | name  | password     |
++--------+-------+--------------+
+|      1 | Alex  | onemanarmy   |
+|      2 | Bruce | WAyne1       |
+|      3 | Joker | HAhaHAhaHAha |
++--------+-------+--------------+
+3 rows in set (0.03 sec)
+
+mysql>

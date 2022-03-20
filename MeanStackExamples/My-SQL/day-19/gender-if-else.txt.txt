@@ -1,0 +1,137 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| rigved_db          |
+| sys                |
++--------------------+
+5 rows in set (0.12 sec)
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> rigved_db;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rigved_db' at line 1
+mysql> use rigved_db;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_rigved_db |
++---------------------+
+| emp                 |
+| empolyee            |
+| student             |
+| t3                  |
+| t4                  |
++---------------------+
+5 rows in set (0.07 sec)
+
+mysql> create table gender(id int primary key auto_increment, name varchar(18), gender varchar(10));
+Query OK, 0 rows affected (2.52 sec)
+
+mysql> insert into gender(name, gender) values('Tommy', 'M'),('Grace','F');
+Query OK, 2 rows affected (0.26 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from gender;
++----+-------+--------+
+| id | name  | gender |
++----+-------+--------+
+|  1 | Tommy | M      |
+|  2 | Grace | F      |
++----+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> create procedure mf(IN g int)
+    -> begin
+    -> declare gen varchar(10)
+    -> declare nam varchar(10)
+    -> select name into nam from gender where id = g
+    -> select gender into gen from gender where id = g
+    -> if gen = 'M'
+    -> then update gender set name = concat('MR.',nam) where id = g
+    -> else update gender set name = concat('MS.',nam) where id = g
+    -> end if
+    -> end;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'declare nam varchar(10)
+select name into nam from gender where id = g
+select gen' at line 4
+mysql> delimiter $$
+mysql> ;
+    -> $$
+ERROR 1065 (42000): Query was empty
+mysql> create procedure mf(IN g int)
+    -> bigin
+    -> declare gen varchar(10)
+    -> declare nam varcahr(10);
+    -> select name into nam from gender where id = g;
+    -> select gender into gen from gender where id = g;
+    -> if gen = 'M';
+    -> then update set name = concat('MR.',nam) where id = g;
+    -> else update gender set name = concat('MS.',nam) where id = g;
+    -> end if;
+    -> end $$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'declare gen varchar(10)
+declare nam varcahr(10);
+select name into nam from gende' at line 3
+mysql> create procedure mf(IN g int)
+    -> begin
+    -> select name into nam from gender where id = g;
+    -> select gender into gen from gender where id = g;
+    -> end $$
+ERROR 1327 (42000): Undeclared variable: nam
+mysql> create procedure mf(IN g int)
+    -> begin
+    -> declare gen varchar(10);
+    -> declare nam varcahr(10);
+    -> select name into nam from gender where id = g;
+    -> select gender into gen from gender where id = g;
+    -> if gen = 'M'
+    -> then update set name = concat('MR.',nam) where id = g;
+    -> else update gender set name = concat('MS.',nam) where id = g;
+    -> end if;
+    -> end $$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varcahr(10);
+select name into nam from gender where id = g;
+select gender into g' at line 4
+mysql> create procedure mf(IN g int)
+    -> begin
+    -> declare gen varchar(10);
+    -> declare nam varchar(10);
+    -> select name into nam from gender where id = g;
+    -> select gender into gen from gender where id = g;
+    -> if gen = 'M'
+    -> then update gender set name = concat('MR.',nam) where id = g;
+    -> else update gender set name = concat('MS.',nam) where id = g;
+    -> end if;
+    -> end $$
+Query OK, 0 rows affected (0.61 sec)
+
+mysql> select * from gender$$
++----+-------+--------+
+| id | name  | gender |
++----+-------+--------+
+|  1 | Tommy | M      |
+|  2 | Grace | F      |
++----+-------+--------+
+2 rows in set (0.03 sec)
+
+mysql> ^C
+mysql> ^C
+mysql> ^C
+mysql>
