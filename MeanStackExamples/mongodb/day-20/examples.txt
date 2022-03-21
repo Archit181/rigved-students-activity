@@ -1,0 +1,151 @@
+Microsoft Windows [Version 10.0.16299.1127]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\Users\HP>mongo
+'mongo' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\HP>set path=C:\Users\HP\Downloads\mongodb-windows-x86_64-5.0.6\mongodb-win32-x86_64-windows-5.0.6\bin;%path%
+
+C:\Users\HP>mongo
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("a47d2021-a23a-4f07-8c75-3f47cb94ddf4") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+        https://docs.mongodb.com/
+Questions? Try the MongoDB Developer Community Forums
+        https://community.mongodb.com
+---
+The server generated these startup warnings when booting:
+        2022-03-21T12:46:20.005+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2022-03-21T12:46:20.006+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show databases;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use mydb
+switched to db mydb
+> db.createCollection("myCollection");
+{ "ok" : 1 }
+> show collections;
+myCollection
+> db.myCollection.insert({_id:8, name:"Alex"});
+WriteResult({ "nInserted" : 1 })
+> db.myCollection.insert({name:"Bruce"});
+WriteResult({ "nInserted" : 1 })
+> db.myCollection.insert({firstname:"Bruce", lastname:"Wayne"});
+WriteResult({ "nInserted" : 1 })
+> db.myCollection.find();
+{ "_id" : 8, "name" : "Alex" }
+{ "_id" : ObjectId("62385beab4bc6d5defa9670f"), "name" : "Bruce" }
+{ "_id" : ObjectId("62385c27b4bc6d5defa96710"), "firstname" : "Bruce", "lastname" : "Wayne" }
+> db.myCollection.insertOne({_id:11, name:"essabale"});
+{ "acknowledged" : true, "insertedId" : 11 }
+> db.myCollections.insertOne({name:"Vijay"});
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("62385cceb4bc6d5defa96711")
+}
+> db.myCollection.find();
+{ "_id" : 8, "name" : "Alex" }
+{ "_id" : ObjectId("62385beab4bc6d5defa9670f"), "name" : "Bruce" }
+{ "_id" : ObjectId("62385c27b4bc6d5defa96710"), "firstname" : "Bruce", "lastname" : "Wayne" }
+{ "_id" : 11, "name" : "essabale" }
+> db.myCollection.insertMany([]);
+{ "acknowledged" : true, "insertedIds" : [ ] }
+> db.myCollection.insertMany([]);
+{ "acknowledged" : true, "insertedIds" : [ ] }
+> db.myCollection.insertMany([{}]);
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("62385d61b4bc6d5defa96712")
+        ]
+}
+> db.myCollection.insertMany([{_id: 33, name:"Rajesh"},]);
+{ "acknowledged" : true, "insertedIds" : [ 33 ] }
+> db.myCollection.insertMany([{_id: 33, name:"Rajesh"},{_id: 44, name:"Alex"},{firstname:"Sourav", lastname:"Gaguly"}]);
+uncaught exception: BulkWriteError({
+        "writeErrors" : [
+                {
+                        "index" : 0,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: mydb.myCollection index: _id_ dup key: { _id: 33.0 }",
+                        "op" : {
+                                "_id" : 33,
+                                "name" : "Rajesh"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 0,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+}) :
+BulkWriteError({
+        "writeErrors" : [
+                {
+                        "index" : 0,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: mydb.myCollection index: _id_ dup key: { _id: 33.0 }",
+                        "op" : {
+                                "_id" : 33,
+                                "name" : "Rajesh"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 0,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+BulkWriteError@src/mongo/shell/bulk_api.js:371:48
+BulkWriteResult/this.toError@src/mongo/shell/bulk_api.js:336:24
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1205:23
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:326:5
+@(shell):1:1
+> db.myCollection.insertMany([........{_id: 33, name:"Rajesh"},{_id: 44, name:"Alex"},{firstname:"Sourav", lastname:"Gaguly"}]);
+uncaught exception: SyntaxError: expected expression, got '...' :
+@(shell):1:31
+> db.myCollection.insertMany([{_id: 33, name:"Rajesh"},{_id: 44, name:"Alex"},{firstname:"Sourav", lastname:"Gaguly"}]);^C
+bye
+
+C:\Users\HP>show dbs;
+'show' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\HP> set path=C:\Users\HP\Downloads\mongodb-windows-x86_64-5.0.6\mongodb-win32-x86_64-windows-5.0.6\bin;%path%
+
+C:\Users\HP>show dbs;
+'show' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\HP>

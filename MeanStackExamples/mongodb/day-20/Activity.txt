@@ -1,0 +1,196 @@
+Microsoft Windows [Version 10.0.16299.1127]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\Users\HP>mongo
+'mongo' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\HP>set path=C:\Users\HP\Downloads\mongodb-windows-x86_64-5.0.6\mongodb-win32-x86_64-windows-5.0.6\bin;%path%
+
+C:\Users\HP>show dbs;
+'show' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\HP>mongo
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("1f51f187-b1f7-4f3e-9c48-e3a2c747ee00") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-03-21T12:46:20.005+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2022-03-21T12:46:20.006+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show databases;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mydb    0.000GB
+> show collections;
+> use mydb;
+switched to db mydb
+> show collcetions;
+uncaught exception: Error: don't know how to show [collcetions] :
+shellHelper.show@src/mongo/shell/utils.js:1211:11
+shellHelper@src/mongo/shell/utils.js:838:15
+@(shellhelp2):1:1
+> db.createCollection("emp");
+{ "ok" : 1 }
+> db.createCollection("EMP");
+{ "ok" : 1 }
+> db.emp.insert({_id:1, name:"Aries"});
+WriteResult({ "nInserted" : 1 })
+> db.emp.insert({_id:2, name:"herculies"});
+WriteResult({ "nInserted" : 1 })
+> db.emp.insert({_id:3, name:"hades"});
+WriteResult({ "nInserted" : 1 })
+> db.emp.insert({_id:4, name:"zues"});
+WriteResult({ "nInserted" : 1 })
+> db.EMP.insertOne({_id:10, name:"Kratos"});
+{ "acknowledged" : true, "insertedId" : 10 }
+> db.EMP.insert({_id:20, name:"Parthos"});
+WriteResult({ "nInserted" : 1 })
+> db.EMP.insertOne({_id:30, name:"Archilies"});
+{ "acknowledged" : true, "insertedId" : 30 }
+> db.EMP.insertOne({_id:40, name:"Titans"});
+{ "acknowledged" : true, "insertedId" : 40 }
+> db.emp.find();
+{ "_id" : 1, "name" : "Aries" }
+{ "_id" : 2, "name" : "herculies" }
+{ "_id" : 3, "name" : "hades" }
+{ "_id" : 4, "name" : "zues" }
+> db.EMP.find();
+{ "_id" : 10, "name" : "Kratos" }
+{ "_id" : 20, "name" : "Parthos" }
+{ "_id" : 30, "name" : "Archilies" }
+{ "_id" : 40, "name" : "Titans" }
+> db.createCollection("user1");
+{ "ok" : 1 }
+> show collections;
+EMP
+emp
+myCollection
+myCollections
+user1
+> db.user1.insertMany([])
+{ "acknowledged" : true, "insertedIds" : [ ] }
+> db.user1.insertMany([{_id:1, name:"God of war"},{_id:2, name:"Athena"},{_id:3, name:"zues"}]);
+{ "acknowledged" : true, "insertedIds" : [ 1, 2, 3 ] }
+> db.createCollection("user");
+{ "ok" : 1 }
+> show collections;
+EMP
+emp
+myCollection
+myCollections
+user
+user1
+> db.user.insertMany([{_id:1, name:"Kratos", password:"Godofwar1"},{_id:2, name:"Athena", password:"GodofKnowledge"},{_id:3, name:"Zues", password:"Rulergod"}]);
+{ "acknowledged" : true, "insertedIds" : [ 1, 2, 3 ] }
+> db.user.find();
+{ "_id" : 1, "name" : "Kratos", "password" : "Godofwar1" }
+{ "_id" : 2, "name" : "Athena", "password" : "GodofKnowledge" }
+{ "_id" : 3, "name" : "Zues", "password" : "Rulergod" }
+> ^C
+bye
+
+C:\Users\HP>mongo
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("23743e3d-9f68-4b20-af56-fc22ab061350") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-03-21T12:46:20.005+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2022-03-21T12:46:20.006+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> db.user.find();
+> show databases;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mydb    0.000GB
+> show colletions:
+... show collection;
+uncaught exception: SyntaxError: "" string literal contains an unescaped line break :
+@(shellhelp2):1:35
+>  show collection;
+uncaught exception: Error: don't know how to show [collection] :
+shellHelper.show@src/mongo/shell/utils.js:1211:11
+shellHelper@src/mongo/shell/utils.js:838:15
+@(shellhelp2):1:1
+> use mydb;
+switched to db mydb
+> show collections;
+EMP
+emp
+myCollection
+myCollections
+user
+user1
+> db.user.find();
+{ "_id" : 1, "name" : "Kratos", "password" : "Godofwar1" }
+{ "_id" : 2, "name" : "Athena", "password" : "GodofKnowledge" }
+{ "_id" : 3, "name" : "Zues", "password" : "Rulergod" }
+> db.user.find({"_id": objectId("3")});
+uncaught exception: ReferenceError: objectId is not defined :
+@(shell):1:15
+> db.user.find({_id:1});
+{ "_id" : 1, "name" : "Kratos", "password" : "Godofwar1" }
+> db.user.deleteOne({_id:3});
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.user.remove({});
+WriteResult({ "nRemoved" : 2 })
+> db.user.find();
+> db.user.insertOne({_id : 1, name: "Kratos", password: "GodOFWar"});
+{ "acknowledged" : true, "insertedId" : 1 }
+> db.user.insertOne({_id: 2, name: "Athena", password: "GodOFKnowledge"});
+{ "acknowledged" : true, "insertedId" : 2 }
+> db.user.insertOne({_id: 3, name: "Zeus", password: "rulesgod"});
+{ "acknowledged" : true, "insertedId" : 3 }
+> db.user.find();
+{ "_id" : 1, "name" : "Kratos", "password" : "GodOFWar" }
+{ "_id" : 2, "name" : "Athena", "password" : "GodOFKnowledge" }
+{ "_id" : 3, "name" : "Zeus", "password" : "rulesgod" }
+> db.user.update({_id : 1},{set : {password : "KillerOFGOds"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.user.find();
+{ "_id" : 1, "set" : { "password" : "KillerOFGOds" } }
+{ "_id" : 2, "name" : "Athena", "password" : "GodOFKnowledge" }
+{ "_id" : 3, "name" : "Zeus", "password" : "rulesgod" }
