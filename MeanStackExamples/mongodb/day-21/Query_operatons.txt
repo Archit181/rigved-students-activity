@@ -1,0 +1,194 @@
+> db.user.find();
+{ "_id" : 1, "set" : { "password" : "KillerOFGOds" } }
+{ "_id" : 2, "name" : "Athena", "password" : "GodOFKnowledge" }
+{ "_id" : 3, "name" : "Zeus", "password" : "rulesgod" }
+> db.user1.find();
+{ "_id" : 1, "name" : "God of war" }
+{ "_id" : 2, "name" : "Athena" }
+{ "_id" : 3, "name" : "zues" }
+> createCollection("user3");
+uncaught exception: ReferenceError: createCollection is not defined :
+@(shell):1:1
+> db.createCollection("user3");
+{ "ok" : 1 }
+> db.user3.insertMany({_id: 10, "name" : "Alex", age : 35},{_id: 20, "name" : "bruce", age:35},{_id: 30, "name" : "charles", age : 36},{_id:40, "name" : "david", age : 38},{_id:50, "name" : "sachin", age : 38},{_id : 60, "name" : "virat", age : 38},{_id : 70, "name" : "rahul", age : 41},{_id : 80, "name" : "Mohan", age : 44});
+uncaught exception: TypeError: documents.map is not a function :
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:307:17
+@(shell):1:1
+> db.user3.insertOne({_id:10, "name" : "Alex", age : 35});
+{ "acknowledged" : true, "insertedId" : 10 }
+> db.user3.insertOne({_id:20, "name" : "bruce", age : 35});
+{ "acknowledged" : true, "insertedId" : 20 }
+> db.user3.insertOne({_id:30, "name" : "charles", age : 35});
+{ "acknowledged" : true, "insertedId" : 30 }
+> db.user3.insertOne({_id:40, "name" : "davis", age : 36});
+{ "acknowledged" : true, "insertedId" : 40 }
+> db.user3.insertOne({_id:50, "name" : "sachin", age : 36});
+{ "acknowledged" : true, "insertedId" : 50 }
+> db.user3.insertOne({_id:60, "name" : "virat", age : 38});
+{ "acknowledged" : true, "insertedId" : 60 }
+> db.user3.insertOne({_id:70, "name" : "rahul", age : 41});
+{ "acknowledged" : true, "insertedId" : 70 }
+> db.user3.insertOne({_id:80, "name" : "Mohan", age : 44});
+{ "acknowledged" : true, "insertedId" : 80 }
+> db.user3.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({$or:[{age:{$gt:38}},{"name":"charles"}]});
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({%or:[{age:35},{"name":"charles"}]});
+uncaught exception: SyntaxError: expected property name, got '%' :
+@(shell):1:15
+> db.user3.find({$or:[{age:35},{"name":"charles"}]});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+> db.user3.find({$or:[{age:{$gt:38}},{"name":"charles"}]});
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({$and:[{name:"Alex"},{age:"35"}]});
+> db.user3.find({$and:[{name:"Alex"},{age:"35"}]});
+> db.user3.find({$or:[{name:"Alex"},{age:"36"}]});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+> db.user3.find();
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({age:{$in:[35,36,38]}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+> db.user3.find({$or:[{age:{$gt:35}},{"name":"charles"}]});
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({$or:[{age:{$gte:36}},{"name":"charles"}]});
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({$or:[{age:{$lt:40}},{"name":"charles"}]});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+> db.user3.find({$or:[{age:{$lte:38}},{"name":"charles"}]});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+> db.user3.find({$or:[{age:{$not:38}},{"name":"charles"}]});
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "$not needs a regex or a document",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.user3.find({$or:[{age:{$nin:38}},{"name":"charles"}]});
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "$nin needs an array",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.user3.find({age:{$exists: true}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({age:{$exists: false}});
+> db.user3.find({age:{$exists: true}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({"name":{$type:"string"}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find{"age": ({$lt:40, $gt:35}});
+uncaught exception: SyntaxError: unexpected token: '{' :
+@(shell):1:13
+> db.user3.find({"age": {$lt:40, $gt:35}});
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+> db.user3.find({$where:{age:"44"}});
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "$where got bad type",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.user3.find(age:{$nin:["35","36"]});
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:17
+> db.user3.find(age:{$nin:["35","36"]})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:17
+> db.user3.find({age:{$nin:["35","36"]}})
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }
+> db.user3.find({age:{$nin:["35","36"]}});
+{ "_id" : 10, "name" : "Alex", "age" : 35 }
+{ "_id" : 20, "name" : "bruce", "age" : 35 }
+{ "_id" : 30, "name" : "charles", "age" : 35 }
+{ "_id" : 40, "name" : "davis", "age" : 36 }
+{ "_id" : 50, "name" : "sachin", "age" : 36 }
+{ "_id" : 60, "name" : "virat", "age" : 38 }
+{ "_id" : 70, "name" : "rahul", "age" : 41 }
+{ "_id" : 80, "name" : "Mohan", "age" : 44 }

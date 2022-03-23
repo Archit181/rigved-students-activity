@@ -1,0 +1,16 @@
+function getValueForNextSequence(sequenceOfName){
+var sequenceDoc = db.students.findAndModify({
+query:{_id: sequenceOfName },
+update: {$inc:{sequence_value:1}},
+new:true
+});
+return "ABC"+sequenceDoc.sequence_value;
+}
+
+> db.students.insert({ "_id" : "item_id", "sequence_value": 0 });
+
+
+db.students.insertOne({ "_id": getValueForNextSequence("student_id"), "name":"lucy"});
+db.students.insertOne({ "_id": getValueForNextSequence("student_id"), "name":"Black_widow"});
+db.students.insertOne({ "_id": getValueForNextSequence("student_id"), "name":"Romonof"});
+
